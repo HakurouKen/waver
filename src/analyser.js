@@ -29,10 +29,11 @@ class AudioAnalyser {
       let analyser = this.analyser;
       let raw = new Uint8Array(analyser.frequencyBinCount);
       analyser[method](raw);
-      const step = Math.round(raw.length / num);
+      const step = raw.length / num;
       let ret = [];
       for (let i = 0; i < num; i++) {
-          ret.push(raw[step * i]);
+          // truncate the tail of the data (usually 0) to make the waveform look better.
+          ret.push(raw[Math.round(step * i * 7/8)]);
       }
       return ret;
     }
