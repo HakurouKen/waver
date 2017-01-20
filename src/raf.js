@@ -30,6 +30,7 @@
     module.exports = {
         start: requestAnimationFrame,
         stop: cancelAnimationFrame,
+        // cycle only support sync function.
         cycle: function(func) {
             return new Promise((resolve, reject) => {
                 let funcWrapper = function() {
