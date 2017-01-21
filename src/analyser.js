@@ -33,6 +33,7 @@ class AudioAnalyser {
       let ret = [];
       for (let i = 0; i < num; i++) {
           // truncate the tail of the data (usually 0) to make the waveform look better.
+          // magic number 7/8 is a empirical value
           ret.push(raw[Math.round(step * i * 7/8)]);
       }
       return ret;
