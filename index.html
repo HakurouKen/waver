@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Visualizer</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+        }
+        .title {
+            margin: 30px;
+            text-align: center;
+        }
+        .content {
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3 class="title">Stripe</h3>
+    <canvas width="800" height="300" id="stripe-canvas" class="content"></canvas>
+    <h3 class="title">WaveForm</h3>
+    <canvas width="800" height="300" id="waveform-canvas" class="content"></canvas>
+    <audio controls id="audio" class="content"></audio>
+    <div class="content">
+        <input type="file" id="upload" accept="audio/*" />
+    </div>
+    <script src="./dist/build.js"></script>
+</body>
+</html>
