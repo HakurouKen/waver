@@ -6,6 +6,13 @@ class BaseDrawer {
         this.ctx = element.getContext('2d');
     }
 
+    normalizeData(data, height) {
+        height = height || this.element.height;
+        return data.map(raw => {
+            return raw/256 * height;
+        });
+    }
+
     draw(options) {
         throw new Error('`draw` method must be overwrite.');
     }

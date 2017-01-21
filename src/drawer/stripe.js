@@ -16,10 +16,10 @@ class StripeDrawer extends BaseDrawer {
         // get the total width && height
         let totalWidth = this.element.width;
         let totalHeight = this.element.height - (cap ? capHeight : 0);
+        data = this.normalizeData(data);
         const stripeWidth = (totalWidth + gap) / data.length - gap;
         // clear the canvas
         ctx.clearRect(0, 0, totalWidth, totalHeight);
-
         // draw the cap
         if (cap) {
             ctx.fillStyle = capStyle;
