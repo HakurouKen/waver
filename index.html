@@ -22,14 +22,16 @@
     </style>
 </head>
 <body>
+    <div class="content">
+        <input type="file" id="upload" accept="audio/*" />
+    </div>
+    <audio controls id="audio" class="content"></audio>
     <h3 class="title">Stripe</h3>
     <canvas width="800" height="300" id="stripe-canvas" class="content"></canvas>
     <h3 class="title">WaveForm</h3>
     <canvas width="800" height="300" id="waveform-canvas" class="content"></canvas>
-    <audio controls id="audio" class="content"></audio>
-    <div class="content">
-        <input type="file" id="upload" accept="audio/*" />
-    </div>
+    <h3 class="title">Circle</h3>
+    <canvas width="300" height="300" id="circle-canvas" class="content"></canvas>
     <script src="./dist/build.js"></script>
 </body>
 </html>
