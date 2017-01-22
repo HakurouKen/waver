@@ -5,13 +5,14 @@ class WaveFormDrawer extends BaseDrawer {
     draw(options) {
         let {
             strokeStyle = '#BBB',
+            lineWidth = 2,
             data = []
         } = options;
         let ctx = this.ctx;
         // get the total width && height
         let totalWidth = this.element.width;
         let totalHeight = this.element.height;
-        data = this.normalizeData(data);
+        data = this.normalizeData(data, totalHeight - lineWidth);
         const periodWidth = totalWidth / data.length;
         // clear the canvas
         ctx.clearRect(0, 0, totalWidth, totalHeight);
@@ -23,6 +24,7 @@ class WaveFormDrawer extends BaseDrawer {
           }
           ctx.lineTo(index * periodWidth, value);
         });
+        ctx.lineWidth = lineWidth;
         ctx.stroke();
         ctx.closePath();
     }
