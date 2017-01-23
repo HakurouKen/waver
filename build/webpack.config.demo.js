@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var config = module.exports = {
   entry: './demo/index.js',
@@ -26,8 +27,11 @@ var config = module.exports = {
         }
       }
     ]
-  }
-  devtool: '#eval-source-map'
+  },
+  devtool: '#eval-source-map',
+  plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -43,12 +47,27 @@ if (process.env.NODE_ENV === 'production') {
       compress: {
         warnings: false
       }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'built.html',
+      template: 'demo/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true,
+        minifyCSS: true,
+      },
+      inject: false
     })
   ]);
 } else {
   config.devtool = '#eval-source-map';
   config.plugins = (config.plugins || []).concat([
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'demo/index.html'
+    })
   ]);
   var devServerConfig = config.devServer = {
     contentBase: path.join(__dirname, '..', 'demo'),
@@ -62,7 +81,7 @@ if (process.env.NODE_ENV === 'production') {
   };
   var originEntry = config.entry;
   config.entry = [
-    'webpack-dev-server/client?http://' + devServerConfig.host + ':' + devServerConfig.ports + '/',
+    'webpack-dev-server/client?http://' + devServerConfig.host + ':' + devServerConfig.port + '/',
     'webpack/hot/dev-server',
     originEntry
   ];

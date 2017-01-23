@@ -54,7 +54,7 @@ AudioAnalyser.sourceGenerator = function (type, ...args) {
     // Usage: AudioAnalyser.sourceGenerator('custom', genFunction)
     let customConstructor = args[0];
     if (typeof customConstructor !== 'function') {
-      throw Error('Custom constructor must be a function')
+      throw Error('Custom constructor must be a function');
     } else {
       return function(ctx) {
         return customConstructor(ctx);
@@ -66,7 +66,7 @@ AudioAnalyser.sourceGenerator = function (type, ...args) {
       return type(ctx);
     };
   } else if (!(type in MEDIA_SOURCE_TYPE)) {
-    throw Error('Unsupported type.')
+    throw Error('Unsupported type.');
   }
   // Usage: AudioAnalyser.sourceGenerator('element', element)
   // Or:    AudioAnalyser.sourceGenerator('stream', stream)
