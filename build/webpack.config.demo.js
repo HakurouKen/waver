@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 
-module.exports = {
+var config = module.exports = {
   entry: './demo/index.js',
   output: {
     path: path.resolve(__dirname, '../demo'),
@@ -27,9 +27,6 @@ module.exports = {
       }
     ]
   },
-  devServer: {
-    contentBase: 'demo'
-  },
   performance: {
     hints: false
   },
@@ -37,21 +34,40 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-    module.exports.performance = {
-      hints: true
-    };
-    module.exports.devtool = '#source-map';
-    module.exports.plugins = (module.exports.plugins || []).concat([
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: '"production"'
-        }
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        sourceMap: true,
-        compress: {
-          warnings: false
-        }
-      })
-    ]);
+  config.devtool = '#source-map';
+  config.plugins = (config.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
+      }
+    })
+  ]);
+} else {
+  config.devtool = '#eval-source-map';
+  config.plugins = (config.plugins || []).concat([
+    new webpack.HotModuleReplacementPlugin()
+  ]);
+  var devServerConfig = config.devServer = {
+    contentBase: path.join(__dirname, '..', 'demo'),
+    colors: true,
+    noInfo: true,
+    quiet: true,
+    host: 'localhost',
+    port: 8080,
+    hot: true,
+    inline: true,
+    open: true
+  };
+  var originEntry = config.entry;
+  config.entry = [
+    'webpack-dev-server/client?http://' + devServerConfig.host + ':' + (devServerConfig.port || 8080) + '/',
+    'webpack/hot/dev-server',
+    originEntry
+  ];
 }
