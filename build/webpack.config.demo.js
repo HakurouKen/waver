@@ -26,10 +26,7 @@ var config = module.exports = {
         }
       }
     ]
-  },
-  performance: {
-    hints: false
-  },
+  }
   devtool: '#eval-source-map'
 }
 
@@ -57,7 +54,6 @@ if (process.env.NODE_ENV === 'production') {
     contentBase: path.join(__dirname, '..', 'demo'),
     colors: true,
     noInfo: true,
-    quiet: true,
     host: 'localhost',
     port: 8080,
     hot: true,
@@ -66,7 +62,7 @@ if (process.env.NODE_ENV === 'production') {
   };
   var originEntry = config.entry;
   config.entry = [
-    'webpack-dev-server/client?http://' + devServerConfig.host + ':' + (devServerConfig.port || 8080) + '/',
+    'webpack-dev-server/client?http://' + devServerConfig.host + ':' + devServerConfig.ports + '/',
     'webpack/hot/dev-server',
     originEntry
   ];
