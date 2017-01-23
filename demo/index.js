@@ -13,7 +13,7 @@ let waveformCanvas = $('waveform-canvas');
 let circleCanvas = $('circle-canvas');
 let uploader = $('upload');
 
-let analyser = new AudioAnalyser(audio);
+let analyser = new AudioAnalyser(AudioAnalyser.sourceGenerator('element', audio));
 let stripeDrawer = new StripeDrawer(stripeCanvas);
 let waveformDrawer = new WaveFormDrawer(waveformCanvas);
 let circleDrawer = new CircleDrawer(circleCanvas);
