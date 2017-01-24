@@ -6,7 +6,7 @@ var config = module.exports = {
   entry: './demo/index.js',
   output: {
     path: path.resolve(__dirname, '../demo'),
-    publicPath: '/',
+    publicPath: './',
     filename: 'build.js'
   },
   module: {
@@ -56,8 +56,7 @@ if (process.env.NODE_ENV === 'production') {
         collapseWhitespace: true,
         removeAttributeQuotes: true,
         minifyCSS: true,
-      },
-      inject: false
+      }
     })
   ]);
 } else {

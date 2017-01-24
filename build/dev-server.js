@@ -15,10 +15,11 @@ var server = new WebpackDevServer(webpack(webpackConfig), {
 });
 
 var host = devServerConfig.host || 'localhost',
-  port = devServerConfig.port || 8080;
+  port = devServerConfig.port || 8080,
+  url = 'http://' + host + ':' + port;
 server.listen(port, host, function () {
-  console.log('Serving on http://' + host + ':' + port);
+  console.log('Serving on ' + url);
   if (devServerConfig.open) {
-    opn('http://' + host + ':' + port);
+    opn(url);
   }
 });
