@@ -38,7 +38,8 @@ class StripeDrawer extends BaseDrawer {
     }
     ctx.fillStyle = fillStyle;
     data.forEach((value, index) => {
-      ctx.fillRect(index * (stripeWidth + gap), totalHeight - value + (cap ? capHeight : 0), stripeWidth, totalHeight);
+      let stripeHeight = value - (cap ? capHeight : 0);
+      ctx.fillRect(index * (stripeWidth + gap), totalHeight - stripeHeight, stripeWidth, stripeHeight);
     });
   }
 }

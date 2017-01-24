@@ -1,7 +1,7 @@
 'use strict';
 import BaseDrawer from './base';
 
-class WaveFormDrawer extends BaseDrawer {
+class WaveformDrawer extends BaseDrawer {
   draw(options) {
     let {
       strokeStyle = '#BBB',
@@ -30,4 +30,4 @@ class WaveFormDrawer extends BaseDrawer {
   }
 }
 
-export default WaveFormDrawer;
+export default WaveformDrawer;

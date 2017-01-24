@@ -5,18 +5,58 @@ import AudioAnalyser from '../src/analyser';
 import StripeDrawer from '../src/drawer/stripe';
 import WaveFormDrawer from '../src/drawer/waveform';
 import CircleDrawer from '../src/drawer/circle';
+import BilateralStripeDrawer from '../src/drawer/bilateralStripe';
 
 const $ = document.getElementById.bind(document);
 let audio = $('audio');
-let stripeCanvas = $('stripe-canvas');
-let waveformCanvas = $('waveform-canvas');
-let circleCanvas = $('circle-canvas');
+let canvas = $('canvas');
+let select = $('select');
+let title = $('title');
 let uploader = $('upload');
 
 let analyser = new AudioAnalyser(AudioAnalyser.sourceGenerator('element', audio));
-let stripeDrawer = new StripeDrawer(stripeCanvas);
-let waveformDrawer = new WaveFormDrawer(waveformCanvas);
-let circleDrawer = new CircleDrawer(circleCanvas);
+let drawers = {
+  stripe: {
+    cls: require('../src/drawer/stripe'),
+    width: 800,
+    height: 300,
+    data: 'frequency'
+  },
+  bilateralStripe: {
+    cls: require('../src/drawer/bilateralStripe'),
+    width: 800,
+    height: 300,
+    data: 'frequency'
+  },
+  waveform: {
+    cls: require('../src/drawer/waveform'),
+    width: 800,
+    height: 300,
+    data: 'timedomain'
+  },
+  circle: {
+    cls: require('../src/drawer/circle'),
+    width: 300,
+    height: 300,
+    data: 'timedomain'
+  }
+};
+
+const dataGetter = {
+  frequency: 'getFrequencyData',
+  timedomain: 'getTimeDomainData'
+};
+
+for (let key in drawers) {
+  let config = drawers[key];
+  config.instance = new config.cls(canvas);
+  let getData = config.data;
+  if (typeof getData === 'string') {
+    config.data = function (analyser) {
+      return analyser[dataGetter[getData]](64);
+    }
+  }
+}
 
 uploader.onchange = function() {
   let files = this.files;
@@ -29,11 +69,22 @@ uploader.onchange = function() {
   }
 };
 
+let drawer = null;
+select.onchange = function () {
+  let value = select.value;
+  let text = select.options[select.selectedIndex].text;
+  title.innerText = text;
+  drawer = drawers[value];
+  canvas.width = drawer.width || canvas.width;
+  canvas.height = drawer.height || canvas.height;
+};
+
+select.onchange();
+
 raf.cycle(() => {
-  let stripeData = analyser.getFrequencyData(64);
-  let waveformData = analyser.getTimeDomainData(64);
-  stripeDrawer.draw({ data: stripeData });
-  waveformDrawer.draw({ data: waveformData });
-  circleDrawer.draw({ data: waveformData });
+  if (drawer) {
+    let data = drawer.data(analyser);
+    drawer.instance.draw({ data: data });
+  };
   return true;
 });

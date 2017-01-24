@@ -4,12 +4,12 @@ import BaseDrawer from './base';
 class CircleDrawer extends BaseDrawer {
   draw(options) {
     let {
-            strokeStyle = '#BBB',
-            lineWidth = 2,
-            fill = false,
-            fillStyle = '#BBB',
-            data = []
-        } = options;
+      strokeStyle = '#BBB',
+      lineWidth = 2,
+      fill = false,
+      fillStyle = '#BBB',
+      data = []
+    } = options;
     let ctx = this.ctx;
     // get the total width && height
     let totalWidth = this.element.width;

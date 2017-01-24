@@ -24,13 +24,15 @@
 <body>
     <div class="content">
       <input type="file" id="upload" accept="audio/*" />
+      <select name="type-select" id="select">
+        <option value="stripe">Stripe</option>
+        <option value="bilateralStripe">Bilateral Stripe</option>
+        <option value="waveform">Waveform</option>
+        <option value="circle">Circle</option>
+      </select>
     </div>
     <audio controls id="audio" class="content"></audio>
-    <h3 class="title">Stripe</h3>
-    <canvas width="800" height="300" id="stripe-canvas" class="content"></canvas>
-    <h3 class="title">WaveForm</h3>
-    <canvas width="800" height="300" id="waveform-canvas" class="content"></canvas>
-    <h3 class="title">Circle</h3>
-    <canvas width="300" height="300" id="circle-canvas" class="content"></canvas>
+    <h3 class="title" id="title"> - </h3>
+    <canvas width="800" height="300" id="canvas" class="content"></canvas>
 </body>
 </html>
