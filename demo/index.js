@@ -39,6 +39,14 @@ let drawers = {
     width: 300,
     height: 300,
     data: 'timedomain'
+  },
+  ring: {
+    cls: require('../src/drawer/ring'),
+    width: 300,
+    height: 300,
+    data: function(analyser) {
+      return analyser.getFrequencyData(8)
+    }
   }
 };
 
