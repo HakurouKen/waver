@@ -15,7 +15,7 @@ class StripeDrawer extends BaseDrawer {
     let ctx = this.ctx;
     // get the total width && height
     let totalWidth = this.element.width;
-    let totalHeight = this.element.height - (cap ? capHeight : 0);
+    let totalHeight = this.element.height;
     data = this.normalizeData(data);
     const stripeWidth = (totalWidth + gap) / data.length - gap;
     // clear the canvas
