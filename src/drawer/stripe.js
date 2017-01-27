@@ -31,7 +31,7 @@ class StripeDrawer extends BaseDrawer {
           // the cap will falldown in a uniform speed
           ctx.fillRect(index * (stripeWidth + gap), totalHeight - (lastCapData[index] -= capFallSpeed), stripeWidth, capHeight);
         } else {
-          ctx.fillRect(index * (stripeWidth + gap), totalHeight - value, stripeWidth, capHeight);
+          ctx.fillRect(index * (stripeWidth + gap), totalHeight - value - capHeight, stripeWidth, capHeight);
           lastCapData[index] = value;
         }
       });
