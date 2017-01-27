@@ -10,8 +10,8 @@ class WaveformDrawer extends BaseDrawer {
     } = options;
     let ctx = this.ctx;
     // get the total width && height
-    let totalWidth = this.element.width;
-    let totalHeight = this.element.height;
+    const totalWidth = this.element.width;
+    const totalHeight = this.element.height;
     data = this.normalizeData(data, totalHeight - lineWidth);
     const periodWidth = totalWidth / data.length;
       // clear the canvas

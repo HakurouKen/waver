@@ -8,8 +8,8 @@ class RingDrawer extends BaseDrawer {
       data = []
     } = options;
     let ctx = this.ctx;
-    let totalWidth = this.element.width;
-    let totalHeight = this.element.height;
+    const totalWidth = this.element.width;
+    const totalHeight = this.element.height;
     let radius = Math.min(totalWidth, totalHeight)/2;
     data = this.normalizeData(data, radius);
     ctx.clearRect(0, 0, totalWidth, totalHeight);

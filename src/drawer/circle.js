@@ -12,8 +12,8 @@ class CircleDrawer extends BaseDrawer {
     } = options;
     let ctx = this.ctx;
     // get the total width && height
-    let totalWidth = this.element.width;
-    let totalHeight = this.element.height;
+    const totalWidth = this.element.width;
+    const totalHeight = this.element.height;
     // radius
     let radius = Math.min(totalWidth, totalHeight) / 2;
     data = this.normalizeData(data, 2 * radius/3 - lineWidth);

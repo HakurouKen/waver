@@ -12,8 +12,8 @@ class BilateralStripeDrawer extends BaseDrawer {
     } = options;
     let ctx = this.ctx;
     // get the total width && height
-    let totalWidth = this.element.width;
-    let totalHeight = this.element.height;
+    const totalWidth = this.element.width;
+    const totalHeight = this.element.height;
     data = this.normalizeData(data);
     const stripeWidth = (totalWidth + gap) / data.length - gap;
     // clear the canvas
