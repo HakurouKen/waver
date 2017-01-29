@@ -47,6 +47,14 @@ let drawers = {
     data: function(analyser) {
       return analyser.getFrequencyData(8)
     }
+  },
+  polygon: {
+    cls: require('../src/drawer/polygon'),
+    width: 300,
+    height: 300,
+    data: function(analyser) {
+      return analyser.getFrequencyData(16)
+    }
   }
 };
 
