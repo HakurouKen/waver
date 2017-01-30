@@ -7,6 +7,7 @@ class PolygonDrawer extends BaseDrawer {
       n = 3,
       rotate = 0,
       lineWidth = 2,
+      strokeStyle = '#BBB',
       data = [],
       rotateStep = 2 * Math.PI / (data.length || 1),
     } = options;
@@ -28,6 +29,7 @@ class PolygonDrawer extends BaseDrawer {
           ctx.lineTo(x, y);
         }
       }
+      ctx.strokeStyle = strokeStyle;
       ctx.lineWidth = lineWidth;
       ctx.closePath();
       ctx.stroke();
