@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint src",
     "lint": "eslint src --fix",
-    "demo": "node build/dev-server",
+    "run": "node build/dev-server",
     "build": "npm run lint && node build/build"
   },
   "keywords": [
