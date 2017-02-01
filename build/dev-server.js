@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-var webpackConfig = require('./webpack.config.demo');
+var webpackConfig = require('./webpack.config');
 var WebpackDevServer = require('webpack-dev-server');
 var opn = require('opn');
 

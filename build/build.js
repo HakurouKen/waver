@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 process.env.NODE_ENV = 'production';
-webpack(require('./webpack.config.demo'), function (err, stats) {
+webpack(require('./webpack.config'), function (err, stats) {
   process.stdout.write(stats.toString({
     colors: true,
     modules: false,
