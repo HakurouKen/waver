@@ -1,5 +1,5 @@
 {
-  "name": "waver",
+  "name": "audio-visualizer",
   "version": "0.0.0",
   "description": "WebAudio Spectrum Generator",
   "private": true,
