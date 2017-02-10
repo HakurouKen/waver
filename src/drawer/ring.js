@@ -13,7 +13,7 @@ class RingDrawer extends BaseDrawer {
     let radius = Math.min(totalWidth, totalHeight)/2;
     data = this.normalizeData(data, radius);
     ctx.clearRect(0, 0, totalWidth, totalHeight);
-    data.forEach((value, index) => {
+    data.forEach(value => {
       ctx.beginPath();
       ctx.arc(totalWidth/2, totalHeight/2, value, 0, 2 * Math.PI, false);
       ctx.fillStyle = fillStyle;
