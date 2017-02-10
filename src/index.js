@@ -2,10 +2,6 @@
 
 import raf from '../src/raf';
 import AudioAnalyser from '../src/analyser';
-import StripeDrawer from '../src/drawer/stripe';
-import WaveFormDrawer from '../src/drawer/waveform';
-import CircleDrawer from '../src/drawer/circle';
-import BilateralStripeDrawer from '../src/drawer/bilateralStripe';
 
 const $ = document.getElementById.bind(document);
 let audio = $('audio');
@@ -45,7 +41,7 @@ let drawers = {
     width: 300,
     height: 300,
     data: function(analyser) {
-      return analyser.getFrequencyData(8)
+      return analyser.getFrequencyData(8);
     }
   },
   polygon: {
@@ -53,7 +49,7 @@ let drawers = {
     width: 300,
     height: 300,
     data: function(analyser) {
-      return analyser.getFrequencyData(16)
+      return analyser.getFrequencyData(16);
     }
   }
 };
@@ -70,7 +66,7 @@ for (let key in drawers) {
   if (typeof getData === 'string') {
     config.data = function (analyser) {
       return analyser[dataGetter[getData]](64);
-    }
+    };
   }
 }
 
@@ -101,6 +97,6 @@ raf.cycle(() => {
   if (drawer) {
     let data = drawer.data(analyser);
     drawer.instance.draw({ data: data });
-  };
+  }
   return true;
 });

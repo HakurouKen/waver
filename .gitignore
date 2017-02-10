@@ -2,7 +2,5 @@
 node_modules/
 *.log
 
-# built demo files
-demo/build.js
-demo/build.js.map
-demo/built.html
+# built files
+dist/

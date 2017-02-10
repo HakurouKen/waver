@@ -3,9 +3,9 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var config = module.exports = {
-  entry: './demo/index.js',
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, '../demo'),
+    path: path.resolve(__dirname, '..','dist'),
     publicPath: './',
     filename: 'build.js'
   },
@@ -49,8 +49,8 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new HtmlWebpackPlugin({
-      filename: 'built.html',
-      template: 'demo/index.html',
+      filename: 'index.html',
+      template: 'index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -64,12 +64,11 @@ if (process.env.NODE_ENV === 'production') {
   config.plugins = (config.plugins || []).concat([
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'demo/index.html'
+      template: 'index.html'
     })
   ]);
   var devServerConfig = config.devServer = {
-    contentBase: path.join(__dirname, '..', 'demo'),
+    contentBase: path.join(__dirname, '..'),
     colors: true,
     noInfo: true,
     host: 'localhost',
